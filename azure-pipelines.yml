@@ -8,8 +8,10 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  condition: eq(variables.ejecutarMQtest, '1')
 
 steps:
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -20,4 +22,3 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- script: echo "Valor MQ ${ejecutarMQ}"
